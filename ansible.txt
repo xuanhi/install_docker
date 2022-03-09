@@ -1,0 +1,70 @@
+svirtualenv：
+	创建：virtualenv -p python3.6 mytestenv
+	进入：source activate
+	查看虚拟环境包 pip3 list
+	退出：deactivate
+copy模块：
+	复制：ansible xhh -m copy -a "src=/etc/hosts dest=/tmp/hosts"
+file模块：
+	创建文件夹（同时可以修改文件属性）： ansible xhh -m file -a "dest=/root/abc mode=755 owner=xhh group=xhh state=directory"
+	创建文件：ansible xhh -m file -a "path=/root/aba mode=755 owner=xhh group=xhh state=touch"
+	删除文件：ansible xhh -m file -a "path=/root/aba mode=755  state=absent"
+
+yum 模块：
+	卸载：ansible xhh -m yum -a "name=lrzsz state=absent"
+	安装：ansible xhh -m yum -a "name=lrzsz state=present"	最新版用state=latest
+user 模块：
+	创建用户：ansible xhh -m user -a "name=foo password=123"
+	删除用户：ansible xhh -m user -a "name=foo state=absent"
+service模块：
+	停止服务：ansible xhh -m service -a "name=nginx state=stopped"
+	开启服务：ansible xhh -m service -a "name=nginx state=started" 重启state=restarted
+setup 模块：
+	用于收集远程主机得基本信息（环境变量）：ansible xhh -m setup
+重启服务：
+	ansible all -a "/sbin/reboot"	
+
+ansible-playbook -i inventory site.yml --limit beijing	(清单选择beijing组)
+
+处理程序通知重启：
+- name: template configuration file
+  template:
+    src: template.j2
+    dest: /etc/foo.conf
+  notify:
+     - restart memcached
+     - restart apache
+
+handlers:
+    - name: restart memcached
+      service:
+        name: memcached
+        state: restarted
+    - name: restart apache
+      service:
+        name: apache
+        state: restarted
+
+
+安装docker：
+	使用ansible-galaxy可以直接在当前目录创建roles目录结构，文件自动生成
+	初始化roles文件：
+		cd /etc/ansible/roles
+		ansible-galaxy init install_docker-ce
+
+	# 语法检查
+	ansible-playbook --syntax-check site.yaml  
+	# 预执行
+	ansible-playbook -C site.yaml
+	# 如果都没问题就可以执行
+	ansible-playbook site.yaml
+
+ansible 192.168.100.150 -e 'ansible_python_interpreter=/usr/bin/python3' -m setup -k 设置指定python解释器
+或者在ansible.cfg 文件的[defaults]键入 interpreter_python = /usr/bin/python3 全局配置
+
+
+ansible-playbook -i inventory_test site.yml -l appservers	-l 选择清单组名
+
+ansible-galaxy install geerlingguy.jenkins -p .	安装到当前目录
+
+ ignore_errors: True	忽略错误
