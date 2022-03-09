@@ -1,0 +1,7 @@
+---
+- name: install yum-utils
+  yum:
+    name: yum-utils
+    state: latest
+- name: install docker-ce.repo
+  shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo

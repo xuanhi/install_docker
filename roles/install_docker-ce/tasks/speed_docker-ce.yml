@@ -1,0 +1,15 @@
+---
+- name: speed up docker images
+  shell: |
+    sudo tee /etc/docker/daemon.json <<-'EOF'
+      {
+         "registry-mirrors": ["https://lsymcm7f.mirror.aliyuncs.com"]
+      }
+    EOF
+- name: just force systemd to reread configs
+  systemd:
+    daemon_reload: yes
+- name: restart service docker
+  systemd:
+    name: docker
+    state: restarted

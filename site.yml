@@ -1,0 +1,5 @@
+---
+- hosts: keepalived
+  remote_user: root
+  roles:
+   - install_docker-ce

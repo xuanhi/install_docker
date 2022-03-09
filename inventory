@@ -1,0 +1,24 @@
+[test]
+127.0.0.1	ansible_port=22  ansible_user=root  ansible_password=xianhuaihai
+
+[node]
+192.168.20.8	ansible_port=22	 ansible_user=root  ansible_password=xianhuaihai
+192.168.20.9	ansible_port=22	 ansible_user=root  ansible_password=xianhuaihai
+
+[k8s]
+192.168.20.110	ansible_port=22  ansible_user=root  ansible_password=xianhuaihai
+192.168.20.111	ansible_port=22  ansible_user=root  ansible_password=xianhuaihai
+192.168.20.112	ansible_port=22  ansible_user=root  ansible_password=xianhuaihai
+
+[harbor]
+192.168.100.35	ansible_port=22	ansible_user=root  ansible_password=admin12345
+
+[huawei]
+123.60.96.215	ansible_port=58022	ansible_user=root  ansible_password=HtZnKj..123
+124.70.149.8	ansible_port=58022	ansible_user=root  ansible_password=HtZnKj..123
+
+[openeuler]
+192.168.100.150	 ansible_port=22  ansible_user=root  ansible_password=QWERasdf12345
+
+[keepalived]
+192.168.20.130  ansible_port=22   ansible_user=root  ansible_password=xianhuaihai

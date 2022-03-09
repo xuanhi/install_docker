@@ -1,0 +1,4 @@
+---
+# handlers file for install_docker-ce
+- name: yum-makecache
+  shell: yum makecache

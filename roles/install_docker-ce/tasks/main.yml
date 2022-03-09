@@ -1,0 +1,15 @@
+---
+# tasks file for install_docker-ce
+- include: down_selinux_firewall.yml
+- include: remove_oldder_version_docker.yml
+- include: install_docker-ce_repo.yml
+- name: install docker-ce docker-ce-cli containerd.io
+  yum: 
+    name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+    state: latest
+- name: Start Docker and enable
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+- include: speed_docker-ce.yml
