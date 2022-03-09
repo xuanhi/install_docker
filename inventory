@@ -13,10 +13,6 @@
 [harbor]
 192.168.100.35	ansible_port=22	ansible_user=root  ansible_password=admin12345
 
-[huawei]
-123.60.96.215	ansible_port=58022	ansible_user=root  ansible_password=HtZnKj..123
-124.70.149.8	ansible_port=58022	ansible_user=root  ansible_password=HtZnKj..123
-
 [openeuler]
 192.168.100.150	 ansible_port=22  ansible_user=root  ansible_password=QWERasdf12345
 
